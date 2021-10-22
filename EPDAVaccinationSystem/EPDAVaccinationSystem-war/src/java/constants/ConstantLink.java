@@ -18,6 +18,7 @@ public class ConstantLink {
     
     public static final String UrlIndex = basePath;
     public static final String UrlDashboard = basePath + "dashboard.jsp";
+    public static final String UrlAppointmentAppointment = basePath + "appointment/appointment.jsp";
     public static final String UrlAppointmentScheduleAppointment = basePath + "appointment/schedule-appointment.jsp";
     public static final String UrlAppointmentManageAppointment = basePath + "appointment/manage-appointment.jsp";
     public static final String UrlAppointmentViewAppointment = basePath + "appointment/view-appointment.jsp";
@@ -25,6 +26,8 @@ public class ConstantLink {
     public static final String UrlManageAccountMinistryStaff = basePath + "manage-account/ministry-staff.jsp";
     public static final String UrlManageAccountClinicStaff = basePath + "manage-account/clinic-staff.jsp";
     public static final String UrlManageAccountPublicUser = basePath + "manage-account/public-user.jsp";
+    public static final String UrlVaccineVaccinationList = basePath + "vaccine/vaccination-list.jsp";
+    public static final String UrlReportReports = basePath + "report/reports.jsp";
     public static final String UrlUserProfile = basePath + "user/profile.jsp";
     
     

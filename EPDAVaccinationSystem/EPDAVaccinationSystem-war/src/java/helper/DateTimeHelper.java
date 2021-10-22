@@ -33,6 +33,11 @@ public class DateTimeHelper {
         return formatter.format(date);
     }
 
+    public static String getCurrentDateFormat1(Date date) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("d MMM yyyy");
+        return formatter.format(date);
+    }
+
     public static Date getDate(int days) throws ParseException {
         Date date = getCurrentDate();
         Calendar c = Calendar.getInstance();

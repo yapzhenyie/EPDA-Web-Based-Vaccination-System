@@ -3,6 +3,12 @@
     Created on : Oct 2, 2021, 9:38:20 PM
     Author     : Yap Zhen Yie
 --%>
+<%@page import="classes.AppointmentStatus"%>
+<%@page import="helper.DateTimeHelper"%>
+<%@page import="model.Vaccination"%>
+<%@page import="model.VaccinationFacade"%>
+<%@page import="model.Appointment"%>
+<%@page import="model.AppointmentFacade"%>
 <%@page import="model.PublicUserFacade"%>
 <%@page import="model.MinistryStaffFacade"%>
 <%@page import="model.ClinicStaffFacade"%>
@@ -82,6 +88,7 @@
 
         <!-- Optional JavaScript Library -->
         <script src="assets/vendors/SweetAlert2/sweetalert2.all.min.js"></script>
+        <script src="assets/vendors/chartjs/chart.min.js"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -143,12 +150,14 @@
                     <%
                         if (session.getAttribute(ConstantSession.UserCredentialRole).equals(UserRole.Clinic_Staff.toString())) {
                     %>
-                    
+
                     <%
                         }
                     %>
-                    <div>
-                        chart per states (vaccinated vs non-vaccinated)
+                    <div class="container-xl mt-5">
+                        <div class="bg-white shadow p-2">
+                            <canvas id="vaccinationProgressByStateChart"></canvas>
+                        </div>
                     </div>
                     <!-- Begin: Footer -->
                     <jsp:include page="layout/footer.jsp" />
@@ -157,6 +166,202 @@
             </div>
         </div>
         <script>
+            $(function () {
+                var ctx = document.getElementById('vaccinationProgressByStateChart').getContext('2d');
+                var vaccinationProgressByStateChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [],
+                        datasets: [
+                            {
+                                label: 'Vaccinated',
+                                data: [],
+                                backgroundColor: '#0fc939',
+                                order: 1,
+                            },
+                            {
+                                label: 'Registered',
+                                data: [],
+                                backgroundColor: '#3b82f6',
+                                order: 2,
+                            },
+                            {
+                                label: 'Vaccinated',
+                                data: [],
+                                borderColor: '#5CB85C',
+                                backgroundColor: 'green',
+                                type: 'line',
+                                order: 0
+                            }
+                        ]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Vaccination Progress by State',
+                                color: 'black',
+                                font: {
+                                    size: 28,
+                                    weight: 'bold'
+                                }
+                            },
+                            subtitle: {
+                                display: true,
+                                text: 'Data for all time',
+                                color: '#6b7280',
+                                font: {
+                                    size: 16,
+                                    family: 'tahoma',
+                                },
+                                padding: {
+                                    bottom: 10
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context, obj) {
+                                        var label = context.dataset.label || "";
+                                        if (label === 'Registered') {
+                                            var total = context.parsed.y + vaccinationProgressByStateChart.data.datasets[0].data[context.dataIndex];
+                                            return label + ': ' + total;
+                                        }
+                                        return label + ': ' + context.parsed.y;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                stacked: true,
+                                title: {
+                                    display: true,
+                                    text: 'State',
+                                    color: '#1f2937',
+                                    font: {
+                                        size: 20,
+                                        weight: 'bold',
+                                        lineHeight: 1.2,
+                                    },
+                                    padding: {top: 15, left: 0, right: 0, bottom: 5}
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                stacked: true,
+                                title: {
+                                    display: true,
+                                    text: 'Number of People',
+                                    color: '#1f2937',
+                                    font: {
+                                        size: 20,
+                                        weight: 'bold',
+                                        lineHeight: 1.2
+                                    },
+                                    padding: {top: 15, left: 0, right: 0, bottom: 0}
+                                },
+                                ticks: {
+                                    precision: 0
+                                }
+                            },
+                        },
+                    }
+                });
+
+                loadChartData(vaccinationProgressByStateChart, "APIReportVaccinationProgressPerState");
+            });
+
+            function loadChartData(chart, url) {
+                var data = {};
+
+                $.getJSON(url, data).done(function (response) {
+                    chart.data.labels = response.labels;
+                    chart.data.datasets[0].data = response.vaccinated;
+                    chart.data.datasets[1].data = response.registered;
+                    chart.data.datasets[2].data = response.vaccinated;
+                    chart.update();
+                });
+            }
+        </script>
+        <script>
+            <%
+                if (session.getAttribute(ConstantSession.UserCredentialRole).equals(UserRole.Public_User.toString())) {
+            %>
+            <%!
+                AppointmentFacade appointmentFacade;
+                VaccinationFacade vaccinationFacade;
+                PublicUser user;
+                Appointment appointment1;
+                Vaccination vaccination1;
+                boolean isAppointmentExpired;
+            %>
+            <%
+                appointmentFacade = (AppointmentFacade) context
+                        .lookup("java:global/EPDAVaccinationSystem/EPDAVaccinationSystem-ejb/AppointmentFacade!model.AppointmentFacade");
+                vaccinationFacade = (VaccinationFacade) context
+                        .lookup("java:global/EPDAVaccinationSystem/EPDAVaccinationSystem-ejb/VaccinationFacade!model.VaccinationFacade");
+                user = (PublicUser) session.getAttribute(ConstantSession.User);
+                appointment1 = appointmentFacade.getAppointmentByDose(user, 1);
+                vaccination1 = vaccinationFacade.filterByDoseAndVaccinator(user, 1);
+                if (appointment1 != null) {
+                    isAppointmentExpired = appointment1.getAppointmentDate().compareTo(DateTimeHelper.getCurrentDate()) < 0;
+                }
+            %>
+            <%
+                if (appointment1 != null && appointment1.getAppointmentStatus() == AppointmentStatus.Pending && !isAppointmentExpired && vaccination1 == null) {
+            %>
+            function showAppointmentMessage() {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success ml-2 mr-2',
+                        cancelButton: 'btn btn-secondary ml-2 mr-2'
+                    },
+                    buttonsStyling: false
+                });
+                swalWithBootstrapButtons.fire({
+                    icon: 'info',
+                    title: '<span style="display: flex;padding: 0 1em;justify-content: center;letter-spacing: 2px;">You have an appointment, please confirm or reject.</span>',
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    cancelButtonText: 'Later',
+                    confirmButtonText: 'Go to Appointment Page'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'appointment/appointment.jsp';
+                    }
+                });
+            }
+            window.onload = showAppointmentMessage;
+            <%
+                }
+                if (appointment1 != null && isAppointmentExpired && vaccination1 == null) {
+            %>
+            function showAppointmentExpiredMessage() {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success ml-2 mr-2',
+                        cancelButton: 'btn btn-secondary ml-2 mr-2'
+                    },
+                    buttonsStyling: false
+                });
+                swalWithBootstrapButtons.fire({
+                    icon: 'warning',
+                    title: '<span style="display: flex;padding: 0 1em;justify-content: center;letter-spacing: 2px;">Your appointment is expired. Please reject the appointment and wait for next appointment.</span>',
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    cancelButtonText: 'Later',
+                    confirmButtonText: 'Go to Appointment Page'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'appointment/appointment.jsp';
+                    }
+                });
+            }
+            window.onload = showAppointmentExpiredMessage;
+            <%
+                    }
+                }
+            %>
         </script>
     </body>
 </html>

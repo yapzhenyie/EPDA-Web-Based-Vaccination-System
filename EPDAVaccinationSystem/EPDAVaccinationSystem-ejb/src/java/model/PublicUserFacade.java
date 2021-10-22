@@ -33,13 +33,14 @@ public class PublicUserFacade extends AbstractFacade<PublicUser> {
 
     public PublicUser findByUserAccount(UserAccount accountId) {
         try {
-            Query query = em.createNamedQuery("PublicUser.findByUserAccount").setParameter("account_id", accountId);
+            Query query = em.createNamedQuery("PublicUser.findByUserAccount");
+            query.setParameter("account_id", accountId);
+            query.setMaxResults(1);
             return (PublicUser) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
-
 
     public List<PublicUser> findByActiveAccount() {
         try {

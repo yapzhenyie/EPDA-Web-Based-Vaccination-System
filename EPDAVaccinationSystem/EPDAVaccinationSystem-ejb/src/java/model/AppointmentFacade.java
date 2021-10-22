@@ -7,7 +7,9 @@ package model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +29,17 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
     public AppointmentFacade() {
         super(Appointment.class);
     }
-    
+
+    public Appointment getAppointmentByDose(PublicUser vaccinator, Integer doseNo) {
+        try {
+            Query query = em.createNamedQuery("Appointment.getAppointmentByDose");
+            query.setParameter("vaccinator_id", vaccinator);
+            query.setParameter("doseNo", doseNo);
+            query.setMaxResults(1);
+            return (Appointment) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 }

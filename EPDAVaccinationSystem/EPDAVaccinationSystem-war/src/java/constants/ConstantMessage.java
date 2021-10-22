@@ -39,6 +39,15 @@ public class ConstantMessage {
     public static String NoVaccinatorsFound = "Failed to schedule appointment. No vaccinators with the selected options were found.";
     public static String NoAvailableClinicFound = "Failed to schedule appointment. All clinics are full or no available clinics can be found.";
     
+    public static String AppointmentIsRejectedByVaccinator = "The appointment is rejected by the vaccinator. Vaccination completion is not allowed.";
+    public static String AppointmentAlreadyCompleted = "The vaccination process is already completed and cannot be operated again.";
+    public static String SuccessfulCompleteVaccinationProcess = "Successfully complete the vaccination process.";
+    
+    public static String ConfirmedAppointment = "Your appointment is marked as Confirmed.";
+    public static String RejectedAppointment = "Your appointment is marked as Rejected.";
+    public static String AppointmentIsExpired = "The appointment has expired. Please reject the appointment and wait for next appointment.";
+    public static String FailedToUpdateAppointmentStatusDueToVaccinationIsCompleted = "The appointment status cannot be updated as the vaccination process is completed.";
+    
     public static String SuccessfulCreateAccount = "Your account has been successfully created.";
     public static String SuccessfulCreateNewMinistryStaffAccount = "New ministry staff account has been successfully created.";
     public static String SuccessfulUpdatePassword = "Your password has been successfully updated.";

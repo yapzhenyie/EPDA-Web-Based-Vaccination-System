@@ -9,7 +9,6 @@ import classes.UserRole;
 import constants.ConstantMessage;
 import constants.ConstantSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

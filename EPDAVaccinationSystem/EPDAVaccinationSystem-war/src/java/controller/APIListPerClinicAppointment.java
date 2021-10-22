@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -75,6 +76,7 @@ public class APIListPerClinicAppointment extends HttpServlet {
                     JSONObject jsonResult = new JSONObject();
                     jsonResult.put("id", res.getId());
                     jsonResult.put("vaccinatorName", res.getVaccinator().getName());
+                    jsonResult.put("vaccinatorEmailAddress", res.getVaccinator().getAccount().getId());
                     jsonResult.put("vaccinatorNricNo", res.getVaccinator().getNricNo());
                     jsonResult.put("vaccinatorGender", EnumGender.values()[res.getVaccinator().getGender()]);
                     jsonResult.put("vaccinatorDateOfBirth", res.getVaccinator().getDateOfBirth() != null ? new SimpleDateFormat("dd/MM/yyyy").format(res.getVaccinator().getDateOfBirth()) : "");
@@ -87,7 +89,8 @@ public class APIListPerClinicAppointment extends HttpServlet {
                     jsonResult.put("clinicName", res.getClinic().getClinicName());
                     jsonResult.put("doseNo", res.getDose());
                     jsonResult.put("appointmentStatus", res.getAppointmentStatus().toString());
-                    jsonResult.put("appointmentDate", res.getAppointmentDate() != null ? new SimpleDateFormat("dd/MM/yyyy").format(res.getAppointmentDate()) : "");
+                    jsonResult.put("appointmentDate", res.getAppointmentDate() != null ? new SimpleDateFormat("dd/MM/yyyy").format(res.getAppointmentDate()) : "");               
+                    jsonResult.put("isVaccinated", res.getVaccinator().getVaccinations().stream().anyMatch(p -> Objects.equals(p.getDose(), res.getDose())));
                     jArray.put(jsonResult);
                 }
                 try (PrintWriter out = response.getWriter()) {

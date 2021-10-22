@@ -36,6 +36,13 @@
     align-content: center;
 }
 
+.v-divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .wrapper {
     height: 100vh;
     width: 100%;
@@ -168,6 +175,12 @@
     max-width: none;
     padding: 0 6px;
     font-size: 1.25rem;
+}
+
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1320px;
+    }
 }
 
 @media screen and (max-width: 991px) {

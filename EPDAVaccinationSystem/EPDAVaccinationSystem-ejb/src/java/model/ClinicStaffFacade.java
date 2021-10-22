@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -32,8 +33,19 @@ public class ClinicStaffFacade extends AbstractFacade<ClinicStaff> {
 
     public ClinicStaff findByUserAccount(UserAccount accountId) {
         try {
-            Query query = em.createNamedQuery("ClinicStaff.findByUserAccount").setParameter("account_id", accountId);
+            Query query = em.createNamedQuery("ClinicStaff.findByUserAccount");
+            query.setParameter("account_id", accountId);
+            query.setMaxResults(1);
             return (ClinicStaff) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<ClinicStaff> findByActiveAccount() {
+        try {
+            Query query = em.createNamedQuery("ClinicStaff.findAllActiveAccount");
+            return query.getResultList();
         } catch (NoResultException e) {
             return null;
         }

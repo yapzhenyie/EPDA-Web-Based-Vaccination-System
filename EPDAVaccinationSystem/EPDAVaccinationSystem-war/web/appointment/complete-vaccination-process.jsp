@@ -4,6 +4,7 @@
     Author     : Yap Zhen Yie
 --%>
 
+<%@page import="classes.AppointmentStatus"%>
 <%@page import="utils.EnumState"%>
 <%@page import="constants.ConstantSession"%>
 <%@page import="constants.ConstantLink"%>
@@ -53,7 +54,7 @@
         <!-- Optional JavaScript Library -->
         <script src="../assets/vendors/SweetAlert2/sweetalert2.all.min.js"></script>
         <script src="../assets/vendors/bootstrap-table/bootstrap-table.min.js"></script>
-<!--        <script src="../assets/vendors/moment/moment.min.js"></script>-->
+        <!--        <script src="../assets/vendors/moment/moment.min.js"></script>-->
     </head>
     <body>
         <style>
@@ -156,11 +157,13 @@
     </body>
     <script>
         $(document).ready(function () {
-            $('#filterGroup').show();
-            useFilterOption = true;
-            var todayDate = new Date().toISOString().substring(0, 10);
-            $("#appointmentDateInput").val(todayDate);
-            refreshTable();
+            setTimeout(function () {
+                $('#filterGroup').show();
+                useFilterOption = true;
+                var todayDate = new Date().toISOString().substring(0, 10);
+                $("#appointmentDateInput").val(todayDate);
+                refreshTable();
+            }, 100);
         });
 
         var $table = $('#table');
@@ -205,6 +208,23 @@
                     '<i class="far fa-check-circle pr-2"></i>' +
                     'Complete Vaccination</a>' +
                     '</div>';
+            if (row.appointmentStatus === '<%= AppointmentStatus.Rejected%>') {
+                button =
+                        '<div class="d-flex justify-content-center align-items-center row" style="margin-left: -12px; margin-right: -12px;">' +
+                        '<a class="btn btn-secondary btn-sm ml-2 mr-2 disabled" href="javascript:void(0)" title="Rejected" role="button" aria-disabled="true" disabled>' +
+                        '<i class="far fa-times-circle pr-2"></i>' +
+                        'Rejected</a>' +
+                        '</div>';
+            }
+            if (row.isVaccinated) {
+                button =
+                        '<div class="d-flex justify-content-center align-items-center row" style="margin-left: -12px; margin-right: -12px;">' +
+                        '<a class="btn btn-success btn-sm ml-2 mr-2 disabled" href="javascript:void(0)" title="Completed" role="button" aria-disabled="true" disabled>' +
+                        '<i class="far fa-check-circle pr-2"></i>' +
+                        'Completed</a>' +
+                        '</div>';
+            }
+            // expired
 //            var date = moment(row.appointmentDate, "DD/MM/YYYY");
 //            var todayDate = new Date();
 //            todayDate.setHours(0, 0, 0, 0);

@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ClinicStaff")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ClinicStaff.findByUserAccount", query = "SELECT a FROM ClinicStaff a WHERE a.account = :account_id")})
+    @NamedQuery(name = "ClinicStaff.findByUserAccount", query = "SELECT a FROM ClinicStaff a WHERE a.account = :account_id")
+    ,@NamedQuery(name = "ClinicStaff.findAllActiveAccount", query = "SELECT a FROM ClinicStaff a WHERE a.account.accountStatus = classes.AccountStatus.Active")})
 public class ClinicStaff implements Serializable {
 
     private static final long serialVersionUID = 1L;

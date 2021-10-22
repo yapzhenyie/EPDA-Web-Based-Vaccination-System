@@ -42,7 +42,6 @@
         <!-- Optional CSS Library -->
         <link href="../assets/vendors/SweetAlert2/sweetalert2.min.css" rel="stylesheet">
         <link href="../assets/vendors/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-        <link href="../assets/vendors/el-checkbox/checkbox.min.css" rel="stylesheet">
 
         <!-- Mandatory JavaScript Library -->
         <script src="../assets/vendors/jquery/jquery.min.js"></script>

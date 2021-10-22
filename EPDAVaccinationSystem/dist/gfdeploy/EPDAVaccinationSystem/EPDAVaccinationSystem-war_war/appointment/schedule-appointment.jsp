@@ -213,7 +213,8 @@
                         <h2 class="font-weight-bold">
                             Registered Vaccinators
                         </h2>
-                        <span>All users available in the system whose account is active.</span>
+                        <p class="m-0">All users available in the system whose account is active and not vaccinated yet.</p>
+                        <p class="m-0">The list may include those who have accepted appointments but have not yet been vaccinated.</p>
                         <table class="table-striped" id="table" 
                                data-toggle="table" data-search="true" data-show-columns="true" 
                                data-show-columns-toggle-all="true" data-show-refresh="true" data-pagination="true" 
@@ -381,7 +382,7 @@
         });
 
         function ajaxRequest(params) {
-            var url = '../APIListPublicUser?status=active';
+            var url = '../APIListPublicUser?status=active&vaccinatedStatus=false&doseNo=1';
             $.get(url).then(function (res) {
                 params.success(res);
             });

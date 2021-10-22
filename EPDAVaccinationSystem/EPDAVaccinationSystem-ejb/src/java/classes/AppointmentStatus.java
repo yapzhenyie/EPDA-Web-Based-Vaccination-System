@@ -10,5 +10,5 @@ package classes;
  * @author Yap Zhen Yie
  */
 public enum AppointmentStatus {
-    Pending, Rejected, Approved;
+    Pending, Rejected, Confirmed;
 }

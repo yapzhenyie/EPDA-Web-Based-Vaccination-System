@@ -9,7 +9,6 @@ import classes.UserRole;
 import constants.ConstantMessage;
 import constants.ConstantSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +20,8 @@ import model.Appointment;
 import model.AppointmentFacade;
 import model.ClinicStaff;
 import model.ClinicStaffFacade;
-import model.MinistryStaff;
 import model.PublicUser;
 import model.PublicUserFacade;
-import model.UserAccount;
 
 /**
  *

@@ -13,13 +13,13 @@ import constants.ConstantSession;
 import helper.DateTimeHelper;
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -271,19 +271,19 @@ public class ScheduleAppointment extends HttpServlet {
                         if (!isVaccinated) {
                             List<Appointment> appointments = user.getAppointments();
 
-                            if (appointments.size() == 0) {
+                            if (appointments.isEmpty()) {
                                 if (!usersNotReceiveAppointment.contains(user)) {
                                     usersNotReceiveAppointment.add(user);
                                 }
                             } else {
-                                for (Appointment app : appointments) {
-                                    // Already passed the appointment date and rejected
-                                    if (app.getAppointmentDate().compareTo(DateTimeHelper.getCurrentDate()) < 0
-                                            && app.getAppointmentStatus() == AppointmentStatus.Rejected) {
+                                Optional<Appointment> latestAppointment = appointments.stream().filter(p -> p.getDose() == 1).sorted(Comparator.comparing(Appointment::getAppointmentDate).reversed()).findFirst();
+
+                                if (latestAppointment.isPresent()) {
+                                    if (latestAppointment.get().getAppointmentDate().compareTo(DateTimeHelper.getCurrentDate()) < 0
+                                            && latestAppointment.get().getAppointmentStatus() == AppointmentStatus.Rejected) {
                                         if (!usersNotReceiveAppointment.contains(user)) {
                                             usersNotReceiveAppointment.add(user);
                                         }
-                                        break;
                                     }
                                 }
                             }

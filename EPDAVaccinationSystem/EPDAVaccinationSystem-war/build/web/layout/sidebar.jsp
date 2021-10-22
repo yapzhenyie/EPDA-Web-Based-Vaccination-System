@@ -17,7 +17,7 @@
                     && session.getAttribute(ConstantSession.UserCredentialRole).equals(UserRole.Public_User.toString())) {
         %>
         <li>
-            <a href="#">
+            <a href="<%= ConstantLink.UrlAppointmentAppointment%>">
                 <div class="menu-item">
                     <i class="far fa-calendar-check"></i>
                     <span>Appointment</span>
@@ -95,7 +95,15 @@
                     && session.getAttribute(ConstantSession.UserCredentialRole).equals(UserRole.Ministry_Staff.toString())) {
         %>
         <li>
-            <a href="#">
+            <a href="<%= ConstantLink.UrlVaccineVaccinationList%>">
+                <div class="menu-item">
+                    <i class="fas fa-syringe"></i>
+                    <span>Vaccination List</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="<%= ConstantLink.UrlReportReports%>">
                 <div class="menu-item">
                     <i class="far fa-file"></i>
                     <span>Reports</span>

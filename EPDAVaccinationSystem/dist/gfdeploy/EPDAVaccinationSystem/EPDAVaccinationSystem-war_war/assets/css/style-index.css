@@ -138,7 +138,6 @@
     -webkit-filter: blur(3px);
 }
 
-
 @media (min-width: 1400px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 1320px;
@@ -162,5 +161,28 @@
     .container-navbar .tools {
         padding: .5rem;
         padding-bottom: 1.5rem;
+    }
+
+    .container-home .home-banner-top .home-banner-top__description .banner-header {
+        font-size: 2.8rem;
+    }
+
+    .container-home .home-banner-top .home-banner-top__description .banner-subheader {
+        font-size: 1.85rem;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .container-home .home-banner-top .home-banner-top__description .banner-header {
+        font-size: 2.35rem;
+    }
+
+    .container-home .home-banner-top .home-banner-top__description .banner-subheader {
+        font-size: 1.35rem;
+    }
+
+    .container-home .home-banner-top .home-banner-top__description .register-btn {
+        font-size: 1rem;
     }
 }

@@ -35,7 +35,9 @@ public class MinistryStaffFacade extends AbstractFacade<MinistryStaff> {
 
     public MinistryStaff findByUserAccount(UserAccount accountId) {
         try {
-            Query query = em.createNamedQuery("MinistryStaff.findByUserAccount").setParameter("account_id", accountId);
+            Query query = em.createNamedQuery("MinistryStaff.findByUserAccount");
+            query.setParameter("account_id", accountId);
+            query.setMaxResults(1);
             return (MinistryStaff) query.getSingleResult();
         } catch (NoResultException e) {
             return null;

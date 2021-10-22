@@ -4,15 +4,28 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="completeVaccinationLabel">Confirm Vaccination Process</h5>
+                <h5 class="modal-title" id="completeVaccinationLabel">Complete Vaccination Process</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form action="../CompleteVaccination" method="POST" id="completeVaccinationForm">
+                    <p class="font-weight-bold" style="color:red;">Before completing the vaccination process, make sure that the vaccinator information is correct.</p>
                     <input type="hidden" id="completeVaccinationId" name="completeVaccinationId" value>
-                    <input type="hidden" id="completeVaccinationRedirectUrl" name="completeVaccinationRedirectUrl" value>
+                    <input type="hidden" id="completeVaccinationRedirectUrl" name="completeVaccinationRedirectUrl" value>             
+                    <div class="font-weight-bold">Appointment Details</div>   
+                    <div class="form-group row">
+                        <div class="col-12 col-md-6 mb-3 mb-md-0">
+                            <label class="col-form-label" for="viewAppointmentDate">Appointment Date</label>
+                            <input class="form-control" name="viewAppointmentDate" type="text" id="viewAppointmentDate" readonly> 
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="col-form-label" for="viewAppointmentStatus">Appointment Status</label>
+                            <input class="form-control" name="viewAppointmentStatus" type="text" id="viewAppointmentStatus" readonly> 
+                        </div>
+                    </div>            
+                    <div class="font-weight-bold mt-4">Vaccinator Details</div>
                     <div class="form-group row">
                         <div class="col-12 col-md-6 mb-3 mb-md-0">
                             <label class="col-form-label" for="viewFullName">Vaccinator Name</label>
@@ -20,7 +33,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="col-form-label" for="viewEmailAddress">Email Address</label>
-                            <input class="form-control" name="viewEmailAddress" type="email" id="viewEmailAddress" readonly> 
+                            <input class="form-control" name="viewEmailAddress" type="text" id="viewEmailAddress" readonly> 
                         </div>
                     </div>
                     <div class="form-group row">
@@ -70,7 +83,6 @@
                             <input class="form-control" name="viewAddressCountry" type="text" id="viewAddressCountry" readonly> 
                         </div>
                     </div>
-                    <p class="font-weight-bold" style="color:red;">Before completing the vaccination process, make sure that the vaccinator information is correct.</p>
                 </form>
             </div>
             <div class="modal-footer justify-content-between">
@@ -84,8 +96,20 @@
     function showCompleteVaccinationModal(row, redirectUrl) {
         $('#completeVaccinationModal').modal('show');
         $('#completeVaccinationId').val(row.id);
-        $('#viewEmailAddress').val(row.emailAddress);
         $('#completeVaccinationRedirectUrl').val(redirectUrl);
+        $('#viewAppointmentDate').val(row.appointmentDate);
+        $('#viewAppointmentStatus').val(row.appointmentStatus);
+        $('#viewFullName').val(row.vaccinatorName);
+        $('#viewEmailAddress').val(row.vaccinatorEmailAddress);
+        $('#viewNricNo').val(row.vaccinatorNricNo);
+        $('#viewGender').val(row.vaccinatorGender);
+        $('#viewDateOfBirth').val(row.vaccinatorDateOfBirth);
+        $('#viewContactNo').val(row.vaccinatorContactNo);
+        $('#viewAddressStreet').val(row.vaccinatorAddressStreet);
+        $('#viewAddressCity').val(row.vaccinatorAddressCity);
+        $('#viewAddressState').val(row.vaccinatorAddressState);
+        $('#viewAddressPostcode').val(row.vaccinatorAddressPostcode);
+        $('#viewAddressCountry').val(row.vaccinatorAddressCountry);
     }
 
     $("#completeVaccinationForm").submit(function () {

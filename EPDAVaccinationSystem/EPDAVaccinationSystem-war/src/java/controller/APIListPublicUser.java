@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -67,6 +68,21 @@ public class APIListPublicUser extends HttpServlet {
                         results = results.stream().filter(r -> r.getAccount().getAccountStatus() == AccountStatus.Terminated).collect(Collectors.toList());
                     }
                 }
+                int paramDoseNo = 0;
+                try {
+                    paramDoseNo = Integer.parseInt(request.getParameter("doseNo"));
+                } catch (NumberFormatException e) {
+
+                }
+                boolean paramVaccinatedStatus = Boolean.valueOf(request.getParameter("vaccinatedStatus"));
+                final int doseNo = paramDoseNo;
+                if (paramVaccinatedStatus) {
+                    // Is vaccinated
+                    results = results.stream().filter(r -> r.getVaccinations().stream().anyMatch(p -> Objects.equals(p.getDose(), doseNo))).collect(Collectors.toList());
+                } else {
+                    results = results.stream().filter(r -> r.getVaccinations().stream().noneMatch(p -> Objects.equals(p.getDose(), doseNo))).collect(Collectors.toList());
+                }
+
                 for (PublicUser res : results) {
                     JSONObject jsonResult = new JSONObject();
                     jsonResult.put("name", res.getName());
