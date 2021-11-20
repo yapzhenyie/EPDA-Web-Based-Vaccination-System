@@ -34,4 +34,6 @@ public class ConstantLink {
     public static final String UrlLogin = basePath + "user/login.jsp";
     public static final String UrlLogout = basePath + "user/logout.jsp";
     
+    public static final String APIToggleSidebar = basePath + "APIToggleSidebar";
+    
 }

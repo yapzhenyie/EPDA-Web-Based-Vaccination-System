@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MinistryStaff.findByUserAccount", query = "SELECT a FROM MinistryStaff a WHERE a.account = :account_id")
-    //, @NamedQuery(name = "MinistryStaff.findAll", query = "SELECT a,b FROM MinistryStaff a INNER JOIN a.account b")
 })
 public class MinistryStaff implements Serializable {
 
@@ -64,7 +63,8 @@ public class MinistryStaff implements Serializable {
     public MinistryStaff() {
     }
 
-    public MinistryStaff(String name, String nricNo, int gender, Date dateOfBirth, String contactNo, String addressStreet, String addressCity, String addressState, String addressPostcode, String addressCountry, UserAccount account) {
+    public MinistryStaff(String name, String nricNo, int gender, Date dateOfBirth, String contactNo,
+            String addressStreet, String addressCity, String addressState, String addressPostcode, String addressCountry, UserAccount account) {
         this.name = name;
         this.nricNo = nricNo;
         this.gender = gender;

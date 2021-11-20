@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Appointment;
 import model.Vaccination;
 import model.VaccinationFacade;
 import org.codehaus.jettison.json.JSONArray;

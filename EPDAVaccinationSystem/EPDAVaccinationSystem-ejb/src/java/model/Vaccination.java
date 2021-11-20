@@ -29,9 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Vaccination")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Vaccination.filterByDoseAndVaccinator", query = "SELECT a FROM Vaccination a WHERE a.vaccinator = :vaccinator_id AND a.dose = :doseNo ORDER BY a.completeVaccinationDate Desc, a.completeVaccinationTime Desc")
-    ,@NamedQuery(name = "Vaccination.filterByDoseAndDateAsc", query = "SELECT a FROM Vaccination a WHERE a.dose = :doseNo ORDER BY a.completeVaccinationDate ASC, a.completeVaccinationTime ASC")
-    ,@NamedQuery(name = "Vaccination.findAllActiveAccount", query = "SELECT a FROM Vaccination a WHERE a.vaccinator.account.accountStatus = classes.AccountStatus.Active")})
+    @NamedQuery(name = "Vaccination.filterByDoseAndVaccinator"
+            , query = "SELECT a FROM Vaccination a WHERE a.vaccinator = :vaccinator_id AND a.dose = :doseNo ORDER BY a.completeVaccinationDate Desc, a.completeVaccinationTime Desc")
+    ,@NamedQuery(name = "Vaccination.filterByDoseAndDateAsc"
+            , query = "SELECT a FROM Vaccination a WHERE a.dose = :doseNo ORDER BY a.completeVaccinationDate ASC, a.completeVaccinationTime ASC")
+    ,@NamedQuery(name = "Vaccination.findAllActiveAccount"
+            , query = "SELECT a FROM Vaccination a WHERE a.vaccinator.account.accountStatus = classes.AccountStatus.Active")})
 public class Vaccination implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -11,10 +11,6 @@ import constants.ConstantMessage;
 import constants.ConstantSession;
 import helper.DateTimeHelper;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Appointment;
 import model.AppointmentFacade;
-import model.ClinicStaff;
 import model.ClinicStaffFacade;
-import model.PublicUser;
 import model.PublicUserFacade;
 import model.Vaccination;
 import model.VaccinationFacade;
@@ -43,12 +37,6 @@ public class ConfirmRejectAppointment extends HttpServlet {
 
     @EJB
     private VaccinationFacade vaccinationFacade;
-
-    @EJB
-    private ClinicStaffFacade clinicStaffFacade;
-
-    @EJB
-    private PublicUserFacade publicUserFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,7 +65,6 @@ public class ConfirmRejectAppointment extends HttpServlet {
             return;
         }
 
-        System.out.println(appointmentStatus);
         if (session.getAttribute(ConstantSession.UserCredentialRole) != null
                 && session.getAttribute(ConstantSession.UserCredentialRole).equals(UserRole.Public_User.toString())) {
             session.setAttribute(ConstantSession.Validate, null);

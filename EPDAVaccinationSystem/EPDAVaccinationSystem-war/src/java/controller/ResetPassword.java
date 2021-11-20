@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.MinistryStaffFacade;
 import model.UserAccount;
 import model.UserAccountFacade;
 import utils.PasswordGenerator;
@@ -30,9 +29,6 @@ public class ResetPassword extends HttpServlet {
 
     @EJB
     private UserAccountFacade userAccountFacade;
-
-    @EJB
-    private MinistryStaffFacade ministryStaffFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

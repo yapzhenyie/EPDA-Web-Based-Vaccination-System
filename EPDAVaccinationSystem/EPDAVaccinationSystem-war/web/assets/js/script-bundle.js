@@ -1,11 +1,3 @@
-// Toggle side bar
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('collapse--show');
-        $('.wrapper .main-content .content').toggleClass('maximum');
-    });
-});
-
 // Toggle active side bar
 $(function () {
     var urlPath = window.location.pathname;

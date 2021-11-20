@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Appointment")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Appointment.getAppointmentByDose", query = "SELECT a FROM Appointment a WHERE a.vaccinator = :vaccinator_id AND a.dose = :doseNo ORDER BY a.appointmentDate Desc")})
+    @NamedQuery(name = "Appointment.getAppointmentByDose"
+            , query = "SELECT a FROM Appointment a WHERE a.vaccinator = :vaccinator_id AND a.dose = :doseNo ORDER BY a.appointmentDate Desc")})
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;

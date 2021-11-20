@@ -1,8 +1,9 @@
+<%@page import="constants.ConstantMessage"%>
 <%@page import="classes.UserRole"%>
 <%@page import="constants.ConstantLink"%>
 <%@page import="constants.ConstantSession"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<nav id="sidebar">
+<nav id="sidebar" class="<%=(session.getAttribute(ConstantSession.Sidebar) != null && session.getAttribute(ConstantSession.Sidebar).equals(ConstantMessage.True)) ? "collapse--show" : ""%>">
     <ul class="list-unstyled components">
         <li>
             <a href="<%= ConstantLink.UrlDashboard%>">
@@ -132,3 +133,15 @@
         </li>
     </ul>
 </nav>
+<script>
+    // Toggle side bar
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('collapse--show');
+            $.ajax({
+                type: "GET",
+                url: "<%= ConstantLink.APIToggleSidebar %>"
+            });
+        });
+    });
+</script>

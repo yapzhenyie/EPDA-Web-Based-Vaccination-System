@@ -27,4 +27,6 @@ public class ConstantSession {
     
     public static String FilterByAppointmentDate = "filterByAppointmentDate";
     public static String AppointmentDate = "appointmentDate";
+    
+    public static String Sidebar = "sidebar";
 }

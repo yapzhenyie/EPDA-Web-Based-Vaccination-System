@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PublicUser.findByUserAccount", query = "SELECT a FROM PublicUser a WHERE a.account = :account_id")
-    ,@NamedQuery(name = "PublicUser.findAllActiveAccount", query = "SELECT a FROM PublicUser a WHERE a.account.accountStatus = classes.AccountStatus.Active")})
+    ,@NamedQuery(name = "PublicUser.findAllActiveAccount"
+            , query = "SELECT a FROM PublicUser a WHERE a.account.accountStatus = classes.AccountStatus.Active")})
 public class PublicUser implements Serializable {
 
     private static final long serialVersionUID = 1L;

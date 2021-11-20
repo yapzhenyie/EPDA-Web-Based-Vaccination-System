@@ -66,10 +66,6 @@ public class APIReportDistributionOfVaccinatedPeopleDaily extends HttpServlet {
                 for (Vaccination record : distinctDates) {
                     jsonLabels.put(DateTimeHelper.getCurrentDateFormat1(record.getAppointmentDate()));
                 }
-//                Date lastDate = distinctDates.get(distinctDates.size() - 1).getAppointmentDate();
-//                for(int i = 1; i <= 1000; i++) {
-//                    jsonLabels.put(DateTimeHelper.getCurrentDateFormat1(addDays(lastDate, i)));
-//                }
                 jsonResult.put("labels", jsonLabels);
 
                 JSONArray jsonVaccinated = new JSONArray();
@@ -78,9 +74,6 @@ public class APIReportDistributionOfVaccinatedPeopleDaily extends HttpServlet {
                     jsonVaccinated.put(vaccinatedRecords.stream().filter(p -> p.getAppointmentDate() != null
                             && p.getAppointmentDate().equals(distinctDate.getAppointmentDate())).count());
                 }
-//                for(int i = 1; i <= 1000; i++) {
-//                    jsonVaccinated.put(Math.abs(new Random().nextFloat() * i));
-//                }
                 jsonResult.put("vaccinated", jsonVaccinated);
 
                 try (PrintWriter out = response.getWriter()) {
