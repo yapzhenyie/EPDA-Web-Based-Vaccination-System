@@ -194,67 +194,67 @@ public class ScheduleAppointment extends HttpServlet {
                 //State
                 if (!statePerlis) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Perlis.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Perlis.getName())).collect(Collectors.toList());
                 }
                 if (!statePenang) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Penang.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Penang.getName())).collect(Collectors.toList());
                 }
                 if (!stateKedah) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Kedah.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Kedah.getName())).collect(Collectors.toList());
                 }
                 if (!statePerak) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Perak.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Perak.getName())).collect(Collectors.toList());
                 }
                 if (!stateKelantan) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Kelantan.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Kelantan.getName())).collect(Collectors.toList());
                 }
                 if (!stateTerengganu) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Terengganu.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Terengganu.getName())).collect(Collectors.toList());
                 }
                 if (!stateSelangor) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Selangor.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Selangor.getName())).collect(Collectors.toList());
                 }
                 if (!statePahang) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Pahang.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Pahang.getName())).collect(Collectors.toList());
                 }
                 if (!stateNegeri_Sembilan) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Negeri_Sembilan.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Negeri_Sembilan.getName())).collect(Collectors.toList());
                 }
                 if (!stateMelaka) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Melaka.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Melaka.getName())).collect(Collectors.toList());
                 }
                 if (!stateJohor) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Johor.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Johor.getName())).collect(Collectors.toList());
                 }
                 if (!stateSabah) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Sabah.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Sabah.getName())).collect(Collectors.toList());
                 }
                 if (!stateSarawak) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Sarawak.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Sarawak.getName())).collect(Collectors.toList());
                 }
                 if (!stateKuala_Lumpur) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Kuala_Lumpur.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Kuala_Lumpur.getName())).collect(Collectors.toList());
                 }
                 if (!statePutrajaya) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Putrajaya.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Putrajaya.getName())).collect(Collectors.toList());
                 }
                 if (!stateLabuan) {
                     users = users.stream().filter(p -> p.getAddressState() != null
-                            && !p.getAddressState().equals(EnumState.Labuan.name())).collect(Collectors.toList());
+                            && !p.getAddressState().equals(EnumState.Labuan.getName())).collect(Collectors.toList());
                 }
                 System.out.println("C1");
                 System.out.println("User Size:" + users.size());

@@ -1,0 +1,40 @@
+INSERT INTO USERACCOUNT (Id, Password, Role, Account_Status) VALUES ('admin2@mail.com', 'password', 0, 0);
+
+INSERT INTO USERACCOUNT (Id, Password, Role, Account_Status) VALUES ('clinic1@mail.com', 'password', 1, 0),('clinic2@mail.com', 'password', 1, 0),('clinic3@mail.com', 'password', 1, 0),('clinic4@mail.com', 'password', 1, 0),('clinic5@mail.com', 'password', 1, 0);
+
+INSERT INTO USERACCOUNT (Id, Password, Role, Account_Status) VALUES ('test1@mail.com', 'password', 2, 0),('test2@mail.com', 'password', 2, 0),('test3@mail.com', 'password', 2, 0),('test4@mail.com', 'password', 2, 0),('test5@mail.com', 'password', 2, 0),('test6@mail.com', 'password', 2, 0),('test7@mail.com', 'password', 2, 0),('test8@mail.com', 'password', 2, 0),('test9@mail.com', 'password', 2, 0),('test10@mail.com', 'password', 2, 0);
+
+INSERT INTO USERACCOUNT (Id, Password, Role, Account_Status) VALUES ('test11@mail.com', 'password', 2, 0),('test12@mail.com', 'password', 2, 0),('test13@mail.com', 'password', 2, 0),('test14@mail.com', 'password', 2, 0),('test15@mail.com', 'password', 2, 0),('test16@mail.com', 'password', 2, 0),('test17@mail.com', 'password', 2, 0),('test18@mail.com', 'password', 2, 0),('test19@mail.com', 'password', 2, 0),('test20@mail.com', 'password', 2, 0);
+
+INSERT INTO MINISTRYSTAFF (id, name, account_id, nric_no, gender, date_of_birth, contact_no, address_street, address_city, address_state, address_postcode, address_country) VALUES (2, 'Ministry of Health Admin 2', 'admin2@mail.com', '780414-10-3133', 0, '1978-04-14', '0123456789', 'Jalan Teknologi 5', 'Taman Teknologi Malaysia', 'W.P. Kuala Lumpur', '57000', 'Malaysia');
+
+INSERT INTO CLINICSTAFF (id, name, account_id, nric_no, gender, date_of_birth, contact_no, clinic_name, vaccination_capacity, address_street, address_city, address_state, address_postcode, address_country) VALUES 
+(1, 'Clinic Staff 1', 'clinic1@mail.com', '990812-10-8964', 0, '1999-09-12', '0123456789', 'Sungai Buloh Health Clinic', 5, 'Jalan Kampung Melayu Bt 13', 'Kampung Melayu Batu 13', 'Selangor', '47000', 'Malaysia'),
+(2, 'Clinic Staff 2', 'clinic2@mail.com', '840213-12-8964', 0, '1984-02-13', '0123456789', 'Axiata Arena Bukit Jalil', 8, 'Enterprise 4, Technology Park Malaysia', 'Lebuhraya Bukit Jalil', 'W.P. Kuala Lumpur', '57000', 'Malaysia'),
+(3, 'Clinic Staff 3', 'clinic3@mail.com', '820922-12-8964', 1, '1982-09-22', '0123456789', 'Desaru Coast Conference Centre (DCCC)', 3, 'No. 4, Jalan Pantai 3', 'Desaru Coast', 'Johor', '81930', 'Malaysia'),
+(4, 'Clinic Staff 4', 'clinic4@mail.com', '691222-12-8964', 0, '1969-12-22', '0123456789', 'Dewan Profesional UITM', 4, 'Taman Desa Sri Putra', 'Wakaf Bharu', 'Kelantan', '16210', 'Malaysia'),
+(5, 'Clinic Staff 5', 'clinic5@mail.com', '860412-12-8964', 0, '1986-04-12', '0123456789', 'Hospital Putrajaya', 3, 'Jalan P9', 'Presint 7', 'W.P. Putrajaya', '62250', 'Malaysia');
+
+INSERT INTO PUBLICUSER (id, name, account_id, nric_no, gender, date_of_birth, contact_no, address_street, address_city, address_state, address_postcode, address_country) VALUES 
+(1, 'Public User 1', 'test1@mail.com', '691222-12-8964', 0, '1969-12-22', '0123465794', 'No 1, Jalan Besar', 'Taman Mewar', 'Selangor', '15632', 'Malaysia'),
+(2, 'Public User 2', 'test2@mail.com', '840524-08-1651', 1, '1984-05-24', '0115641654', 'No 12, Jalan Gitar 23/3', 'Seksyen 23 Elite', 'Perlis', '86544', 'Malaysia'),
+(3, 'Public User 3', 'test3@mail.com', '871124-07-8972', 2, '1987-11-24', '011561165', '31 Jln 4/34B', 'Jln Kepong Sri Edaran Industrial Park', 'Penang', '48981', 'Malaysia'),
+(4, 'Public User 4', 'test4@mail.com', '941217-12-9595', 2, '1994-12-17', '012143256', 'Jalan SS 26/8', 'Taman Mayang Jaya', 'Kedah', '16513', 'Malaysia'),
+(5, 'Public User 5', 'test5@mail.com', '650619-10-4651', 1, '1965-06-19', '01215611', '3 Jln Pjs 11/20', 'Taman Bandar Sunway', 'Perak', '15615', 'Malaysia'),
+(6, 'Public User 6', 'test6@mail.com', '991123-12-7985', 0, '1999-11-23', '0121561311', 'Jalan PSK 6', 'Seri Kembangan', 'Kelantan', '46320', 'Malaysia'),
+(7, 'Public User 7', 'test7@mail.com', '920622-12-7985', 0, '1992-06-22', '0184664164', '7 Jln Kilang Kawasan Perindustrian', 'Taman Dato Onn', 'Terengganu', '45613', 'Malaysia'),
+(8, 'Public User 8', 'test8@mail.com', '000814-12-7985', 0, '2000-08-14', '0156464654', 'Lot G-71 Pertama Complex', 'Jalan Tunku Abdul Rahman', 'Pahang', '45500', 'Malaysia'),
+(9, 'Public User 9', 'test9@mail.com', '001117-12-7985', 1, '2000-11-17', '01646874341', 'No. 19 Jln Jujur 2', 'Kuala Lumpur', 'W.P. Kuala Lumpur', '56000', 'Malaysia'),
+(10, 'Public User 10', 'test10@mail.com', '910619-12-7985', 1, '1991-06-19', '01646547816', '3 10 Jln Ss2/67 Ss2 Petaling Jaya', 'Butterworth', 'Negeri Sembilan', '46130', 'Malaysia');
+
+INSERT INTO PUBLICUSER (id, name, account_id, nric_no, gender, date_of_birth, contact_no, address_street, address_city, address_state, address_postcode, address_country) VALUES 
+(11, 'Public User 11', 'test11@mail.com', '640623-12-1651', 0, '1964-06-23', '0126516133', 'No 1, Jalan Besar', 'Taman Mewar', 'Melaka', '15632', 'Malaysia'),
+(12, 'Public User 12', 'test12@mail.com', '841024-08-9623', 1, '1984-10-24', '0114896116', 'No 12, Jalan Gitar 23/3', 'Seksyen 23 Elite', 'Johor', '86544', 'Malaysia'),
+(13, 'Public User 13', 'test13@mail.com', '940115-07-0864', 2, '1994-11-15', '0118946155', '31 Jln 4/34B', 'Jln Kepong Sri Edaran Industrial Park', 'Sabah', '48981', 'Malaysia'),
+(14, 'Public User 14', 'test14@mail.com', '890721-12-9650', 2, '1989-07-21', '0122962030', 'Jalan SS 26/8', 'Taman Mayang Jaya', 'Sarawak', '16513', 'Malaysia'),
+(15, 'Public User 15', 'test15@mail.com', '890915-04-8941', 1, '1989-09-15', '0128946475', '3 Jln Pjs 11/20', 'Taman Bandar Sunway', 'W.P. Putrajaya', '15615', 'Malaysia'),
+(16, 'Public User 16', 'test16@mail.com', '011215-12-1561', 0, '2001-12-15', '0128956102', 'Jalan PSK 6', 'Seri Kembangan', 'W.P. Labuan', '46320', 'Malaysia'),
+(17, 'Public User 17', 'test17@mail.com', '890515-08-8494', 0, '1989-05-15', '0189456102', '7 Jln Kilang Kawasan Perindustrian', 'Taman Dato Onn', 'Selangor', '45613', 'Malaysia'),
+(18, 'Public User 18', 'test18@mail.com', '560316-12-0561', 0, '1956-03-16', '0198465120', 'Lot G-71 Pertama Complex', 'Jalan Tunku Abdul Rahman', 'W.P. Kuala Lumpur', '45500', 'Malaysia'),
+(19, 'Public User 19', 'test19@mail.com', '981231-02-1561', 1, '1998-12-31', '0189465102', 'No. 19 Jln Jujur 2', 'Kuala Lumpur', 'W.P. Kuala Lumpur', '56000', 'Malaysia'),
+(20, 'Public User 20', 'test20@mail.com', '960816-10-0561', 1, '1996-08-16', '0169864517', '3 10 Jln Ss2/67 Ss2 Petaling Jaya', 'Butterworth', 'Selangor', '46130', 'Malaysia');

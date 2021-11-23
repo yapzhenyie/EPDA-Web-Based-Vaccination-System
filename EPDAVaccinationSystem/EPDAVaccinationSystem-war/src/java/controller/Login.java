@@ -6,10 +6,12 @@
 package controller;
 
 import classes.AccountStatus;
+import classes.UserRole;
 import constants.ConstantMessage;
 import constants.ConstantSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,7 @@ import model.PublicUser;
 import model.PublicUserFacade;
 import model.UserAccount;
 import model.UserAccountFacade;
+import utils.EnumGender;
 
 /**
  *
@@ -74,6 +77,16 @@ public class Login extends HttpServlet {
             }
 
             UserAccount account = userAccountFacade.find(email);
+
+            if (email.equals("admin@mail.com") && account == null) {
+                UserAccount userAccount = new UserAccount("admin@mail.com", UserRole.Ministry_Staff, "password");
+                userAccountFacade.create(userAccount);
+                MinistryStaff newMinistryStaff = new MinistryStaff("Ministry of Health Admin 1", "780414-10-3133", 0, new Date(1978, 3, 14), "0123456789",
+                        "Jalan Teknologi 5", "Taman Teknologi Malaysia", "W.P. Kuala Lumpur", "57000", "Malaysia", userAccount);
+                ministryStaffFacade.create(newMinistryStaff);
+                account = userAccountFacade.find(email);
+            }
+
             if (account != null
                     && account.getPassword().equals(password)
                     && account.getAccountStatus() == AccountStatus.Active) {

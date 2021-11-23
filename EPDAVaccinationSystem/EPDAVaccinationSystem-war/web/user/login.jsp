@@ -85,6 +85,12 @@
                                     <a class="font-weight-bold" href="signup.jsp">SIGN UP NOW</a>
                                 </div>
                             </div>
+                            <div class="d-flex row pt-2">
+                                <span class="v-login-form__footer-description col-12">Login as Ministry Staff?</span>
+                                <div class="col-12">
+                                    <a class="font-weight-bold" id="populateMinistryStaffDetails" href="javascript:void(0);">LOGIN</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +113,10 @@
                 }
             });
 
+            $("#populateMinistryStaffDetails").click(function () {
+                $("#email").val('admin@mail.com');
+                $("#password").val('password');
+            });
 
             <%
                 if (session.getAttribute(ConstantSession.Validate) != null && session.getAttribute(ConstantSession.Validate).equals(ConstantMessage.Error)) {
